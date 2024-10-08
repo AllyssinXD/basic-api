@@ -1,0 +1,3 @@
+POST https://crochesdatiabinha-backend-production.up.railway.app/api/auth/verify
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjZhYmRiMmFmZGE0ZThkNmRmMTQxYjFlIiwiaWF0IjoxNzI3MTM4MjQwLCJleHAiOjE3MjcxNDE4NDB9.XaX4zSjuhcqjh0WovAH8GmL1bKRqf3WeyALtMABuLdI
