@@ -23,6 +23,15 @@ router.get('/', async (req, res)=>{
     return res.status(200).json({username: user.username})
 })
 
+router.get('/logout', async (req, res)=>{
+    res.clearCookie('token', {
+        httpOnly: true,
+        sameSite: 'Lax',  // Mesmas configurações que foram usadas na criação
+        secure: process.env.NODE_ENV === 'production',  // Mesmas configurações que foram usadas na criação
+    });
+    res.status(200).json({ message: "Logout realizado com sucesso" });
+})
+
 router.post('/register', async (req, res)=>{
     const {username, password} = req.body;
 
@@ -64,7 +73,9 @@ router.post('/login', async (req, res)=>{
     res.cookie('token', jwt.sign({userID: user._id}, process.env.SECRET_KEY),
     {
         httpOnly: true,
-        maxAge: 1000*60*60*24
+        maxAge: 1000*60*60*24,
+        secure: process.env.NODE_ENV === 'production',  // Só define o cookie como secure em produção
+        sameSite: 'Lax'  // Evita problemas de CSRF, mas permite envio de cookies
     }).status(200).json({message: "Logado com sucesso"})
 })
 
